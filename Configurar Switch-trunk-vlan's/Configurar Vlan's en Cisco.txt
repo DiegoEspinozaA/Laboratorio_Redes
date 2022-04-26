@@ -1,0 +1,43 @@
+- Crear el circuito que se menciona con todas los parametros, GW, IPv4 y mascara.
+- Acceder al Switch en el que se quieren crear las Vlan
+
+Dentro del CLI del Switch usar esto para cada una de las vlan que se quieren crear.
+
+> enable
+> conf t
+> hostname "nombre_switch"
+> vlan 10
+> name "nombre_vlan"
+> exit (para salir de esa vlan si se quiere configurar otra)
+
+Asi mismo para crear x vlan's.
+
+
+
+
+Ahora para asignar un dispositivo a esa vlan hay que acceder nuevamente al switch y hacer lo siguiente:
+
+> enable (si no se esta en modo root aun, o por si se salio anteriormente)
+> conf t
+> interface < NOMBRE interface del switch a la que esta conectada el dispositivo> <numero interface>
+> switchport mode access
+> switchport access vlan "numero_vlan"
+
+
+
+
+
+
+#Construir enlace troncal (linea de paso de cebra)
+
+Acceder al switch
+
+> conf t
+> interface < interface que esta conectada al otro switch/dispositivo> 
+> switchport mode trunk
+> exit
+
+Esto debe acerse en el otro dispositivo que esta utilizando el cable con la respectiva interfaz.
+
+
+VER LAB_REDES_TRUNK_VLANS.

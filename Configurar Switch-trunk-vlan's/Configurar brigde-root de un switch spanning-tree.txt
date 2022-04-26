@@ -1,0 +1,8 @@
+Cuando se conectan x>2 switch entre ellos con cables trunk, estos hacen una conversacion para designar que puerta dejan apagada, esto lo hace el router que tenga la menor MAC. Este luego sera llamado raiz porque sera el que tenga sus interfaces hacia los switch UP (verdes).
+
+Para ver cual es el switch root se usa el comando:
+> swicth# show spanning-tree
+
+Si se desea cambiar el switch root se debe ingresar el comando en un switch obviamente no sea el root
+
+> spanning-tree vlan 1 root primary

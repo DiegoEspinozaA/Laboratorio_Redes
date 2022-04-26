@@ -1,0 +1,19 @@
+switch 1
+
+> enable
+> conf t
+> hostname s1
+> interface range fastEthernet 0/1 - 1
+> switchport mode trunk
+> channel-group 1 mode active
+
+
+
+
+switch 2
+> enable
+> conf t
+> hostname s2
+> interface range fastEthernet 0/1 - 1
+> switchport mode trunk
+> channel-group 1(mismo grupo que el s1) mode passive
