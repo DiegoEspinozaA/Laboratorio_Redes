@@ -1,0 +1,46 @@
+-- Hacer estos comandos para todos los SW --
+
+>
+enable
+conf t
+interface range fa0/3-7
+switchport mode access
+switchport access vlan 10
+exit
+
+interface range fa0/8-12
+switchport mode access
+switchport access vlan 20
+exit
+
+interface range fa0/13-24
+switchport mode access
+switchport access vlan 30
+exit
+
+interface range fa0/1-2
+switchport mode trunk
+
+-- Hacer lo mismo para los demas SW --
+
+
+___________________________________________________
+Cambiar SW a root primary para determinada Vlan
+(Si no se mencionan las vlan queda predeterimandas para todas las vlan)
+
+>SW1
+enable
+conf t
+spanning-tree vlan 1, 10 root primary
+-- Con esto dejara a este SW1 como primary para la Vlan 1 y 10.
+
+
+>SW2
+enable 
+conf t
+spanning-tree vlan 20, 30 root primary
+-- Con eto dejara a SW2 como primary para la Vlan 20, 30
+
+-- Esto se llama balancero de carga porque las vlan quedan distribuidas --
+
+
