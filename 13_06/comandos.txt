@@ -1,0 +1,77 @@
+-- Configuracion de 2960 --
+-- HACER ESTO PARA CADA UNO DE LOS SWITCHS --
+
+enable
+conf t
+interface range fa0/6-10
+switchport mode access
+switchport access vlan 10
+exit
+
+interface range fa0/11-15
+switchport mode access
+switchport access vlan 20
+exit
+
+interface range fa0/16-24
+switchport mode access
+switchport access vlan 30
+exit
+
+
+-- Para cada SWITCH --
+interface range fa0/1-4
+switchport mode trunk
+
+
+
+#CONFIGURACION DE DNS Y WEB
+https://www.youtube.com/watch?v=1-1eC_k7Iuk
+Resumen: Configurar dns con su ip y mascara
+en el apartado DNS de SERVICIOS poner el dominio de la web y su ip. (guardar), luego configurar la web con su ip y mascara.
+Para finalizar asignarle la ip de el DNS a cada computador.
+
+
+
+-- ROOT PRIMARY Y SECONDARY PARA LOS SWITCH --
+
+enable
+conf t
+spanning-tree vlan 10 root primary
+spanning-tree vlan 20,30 root secondary
+
+
+enable
+conf t
+spanning-tree vlan 20,30 root primary
+spanning-tree vlan 10 root secondary
+
+
+#rapid-pvst para los swith
+spanning-tree mode rapid-pvst
+
+
+-- Po para cada enlaces
+Si es active-pasive
+
+#Para uno de los 2 entre las conexiones
+interface range fa/0-1
+switchport mode acces
+channel-group 1 mode active
+
+#Para el otro
+interface range fa/0-1
+switchport mode acces
+channel-group 1 mode pasive
+
+-- Y ASI CON LOS DISTINTOS TIPOS DE PROTOCOLOS --
+
+
+
+
+#configurar router
+interfaz g0/0 not shutdown
+
+interfaz g0/0.10
+encapsulatio dot1Q 10
+ip address 172.16.10.1 255.255.255.0
